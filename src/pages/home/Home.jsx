@@ -3,12 +3,13 @@ import "./home.scss";
 import Navbar from '../../components/navbar/Navbar';
 import Featured from '../../components/featured/Featured';
 import List from '../../components/list/List';
+import Register from '../register/Register';
 
 
 const Home = () => {
   return (
     <div className='home'>
-      < Navbar/>
+      < Register/>
       
       <Featured type={"series"}/>
       <List/>
