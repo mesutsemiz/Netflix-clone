@@ -13,6 +13,8 @@ mongoose.connect(process.env.MONGO_URL)
     console.log(err)
 });
 
+app.use(express.json());
+
 app.use("/api/auth", authRoute);
 
 app.listen(5500, () => {
