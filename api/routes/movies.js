@@ -20,7 +20,7 @@ router.post("/", verify, async (req, res) => {
 
 //UPDATE
 
-router.post("/find/:id", verify, async (req, res) => {
+router.put("/:id", verify, async (req, res) => {
   if (req.user.isAdmin) {
     try {
       const updatedMovie = await Movie.findByIdAndUpdate(
@@ -28,7 +28,7 @@ router.post("/find/:id", verify, async (req, res) => {
         { $set: req.body },
         { new: true }
       );
-      res.status(201).json(savedMovie);
+      res.status(200).json(updatedMovie);
     } catch (err) {
       res.status(500).json(err);
     }
@@ -49,6 +49,17 @@ router.delete("/:id", verify, async (req, res) => {
     }
   } else {
     res.status(403).json("You are not allowed!");
+  }
+});
+
+//GET
+
+router.get("/find/:id", verify, async (req, res) => {
+  try {
+    const movie = await Movie.findById(req.params.id);
+    res.status(200).json(movie);
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 
