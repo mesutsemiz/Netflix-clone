@@ -5,7 +5,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ListItem from "../listItem/ListItem";
 import { useState } from "react";
 
-const List = () => {
+const List = ({list}) => {
   const [slideNumber, setSlideNumber] = useState(0);
   const [isMoved, setIsMoved] = useState(false);
   const listRef = useRef();
@@ -26,7 +26,7 @@ const List = () => {
 
   return (
     <div className="list">
-      <span className="listTitle">Continue to Watch</span>
+      <span className="listTitle">{list.title}</span>
       <div className="wrapper">
         <ArrowBackIosIcon
           className="sliderArrow left"
