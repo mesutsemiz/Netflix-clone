@@ -4,6 +4,8 @@ import SearchIcon from "@mui/icons-material/Search";
 import NotificationsIcon from "@mui/icons-material/NotificationsNone";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { useState } from "react";
+import { Link } from "react-router-dom/cjs/react-router-dom";
+
 
 const Navbar = () => {
 
@@ -25,9 +27,15 @@ const Navbar = () => {
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Netflix_logo.svg/800px-Netflix_logo.svg.png"
             alt=""
           />
+           <Link to="/" className="link">
           <span>Homepage</span>
+         </Link>
+         <Link to="/series" className="link">
           <span>Series</span>
+         </Link>
+         <Link to="/movies" className="link">
           <span>Movies</span>
+         </Link>
           <span>New und Popular</span>
           <span>My List</span>
         </div>
