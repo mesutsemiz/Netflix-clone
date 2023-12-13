@@ -8,10 +8,12 @@ const Watch = () => {
  const movie = location.movie
   return (
     <div className="watch">
+      <Link to="/">
       <div className="back">
         <ArrowBackOutlinedIcon />
         Home
       </div>
+      </Link>
       <video
         src={movie.trailer}
         className="video"
