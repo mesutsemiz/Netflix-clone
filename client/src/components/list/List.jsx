@@ -5,12 +5,13 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ListItem from "../listItem/ListItem";
 import { useState } from "react";
 
+
 const List = ({ list }) => {
   const [slideNumber, setSlideNumber] = useState(0);
   const [isMoved, setIsMoved] = useState(false);
   const listRef = useRef();
 
-  console.log(list,"list")
+
 
   const handleClick = (direction) => {
     setIsMoved(true);
