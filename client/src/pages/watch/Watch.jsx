@@ -1,7 +1,7 @@
 import React from "react";
 import "./watch.scss";
 import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link} from "react-router-dom";
 
 const Watch = () => {
   const location = useLocation()

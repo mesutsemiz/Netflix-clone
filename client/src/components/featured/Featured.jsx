@@ -1,8 +1,34 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./featured.scss";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import { useState } from "react";
+import axios from "axios";
+
+
 const Featured = ({type}) => {
+  const [content, setContent] = useState({});
+
+  useEffect(()=>{
+    const getRandomContent = async()=>{
+
+      try {
+        const res = await axios.get(`/movies/random?type=${type}`,{
+          headers: {
+            token:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NzcyMDljMjg0Njc2NmIxMjBiYWRhMyIsImlzQWRtaW4iOnRydWUsImlhdCI6MTcwMjM5MzIwMCwiZXhwIjoxNzAyODI1MjAwfQ.DeJUApH6_jNVijWWlgDnd1NO-b9OA5xJ1Z7-DRgVaYs"
+          },
+        });
+        setContent(res.data[0])
+      } catch (error) {
+        console.log(error)
+      }
+    }
+getRandomContent()
+  },[type])
+
+  console.log(content,"content")
+
   return (
     <div className="featured">
         {type && (
@@ -28,20 +54,16 @@ const Featured = ({type}) => {
             </div>
         )}
       <img
-        src="https://images.pexels.com/photos/19255737/pexels-photo-19255737/free-photo-of-ahsap-peyzaj-alan-yaz.jpeg?auto=compress&cs=tinysrgb&w=400&lazy=load"
-        alt=""
+        src={content.img}
       />
       <div className="info">
         <img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSoqkGnoArj_YMaBB171ElVw0wr0rJcAocyA&usqp=CAU"
+          src={content.imgSm}
           alt=""
         />
 
         <span className="desc">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores,
-          animi perferendis minus voluptatum similique optio reiciendis magni
-          labore consequuntur debitis. Ut ad quis saepe quaerat rerum qui!
-          Itaque, quae ratione?
+        {content.desc}
         </span>
         <div className="buttons">
           <button className="play">

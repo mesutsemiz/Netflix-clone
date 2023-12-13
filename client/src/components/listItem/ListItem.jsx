@@ -12,9 +12,6 @@ const ListItem = ({ index,item }) => {
   const [movie, setMovie] = useState({});
 
 
-
-
-
   useEffect(() => {
     const getMovie = async () => {
       try {
@@ -33,7 +30,7 @@ const ListItem = ({ index,item }) => {
   }, [item]);
 
    return (
-    <Link to={{pathname:"/watch", movie:movie, search:"mesut"}}>
+    <Link to={{pathname:"/watch", movie:movie, search:""}}>
     <div
       className="listItem"
       style={{ left: isHovered && index * 225 - 50 + index * 2.5 }}
