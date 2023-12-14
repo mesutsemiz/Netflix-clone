@@ -54,10 +54,14 @@ export default function Home() {
   }, [MONTHS]);
 
 
+
+  const [arrai , setArrai ] = useState({})
+
+
   return (
     <div className="home">
       <FeaturedInfo />
-      <Chart data={userStats} title="User Analytics" grid dataKey="Active User"/>
+      <Chart data={userStats} title="User Analytics" grid dataKey="New User"/>
       <div className="homeWidgets">
         <WidgetSm/>
         <WidgetLg/>
