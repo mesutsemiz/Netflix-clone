@@ -1,20 +1,22 @@
 import React, { useContext, useState } from "react";
-import "../login/login.css";
-import { AuthContext } from "../../context/authContext/AuthContext";
 import { login } from "../../context/authContext/apiCalls";
+import { AuthContext } from "../../context/authContext/AuthContext";
+import "./login.css";
 
-const Login = () => {
+export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { isFetching, dispatch } = useContext(AuthContext);
 
   const handleLogin = (e) => {
+    console.log("sslm")
     e.preventDefault();
     login({ email, password }, dispatch);
   };
+
   return (
     <div className="login">
-      <form action="" className="loginForm">
+      <form className="loginForm">
         <input
           type="text"
           placeholder="email"
@@ -27,16 +29,14 @@ const Login = () => {
           className="loginInput"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button 
+        <button
           className="loginButton"
           onClick={handleLogin}
           disabled={isFetching}
-          >
+        >
           Login
         </button>
       </form>
     </div>
   );
-};
-
-export default Login;
+}

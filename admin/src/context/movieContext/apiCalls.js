@@ -3,18 +3,18 @@ import {
   getMoviesStart,
   getMoviesSuccess,
 } from "./MovieActions";
+import axios from "axios";
 
-export const getMovies = (dispatch) => {
+export const getMovies = async (dispatch) => {
   dispatch(getMoviesStart());
-
   try {
-    const res = axios.get("/movies", {
+    const res = await axios.get("/movies", {
       headers: {
-        token: "Bearer" + JSON.parse(localStorage.getItem("user")).accessToken,
+        token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
       },
     });
-    dispatch(getMoviesSuccess());
-  } catch (error) {
+    dispatch(getMoviesSuccess(res.data));
+  } catch (err) {
     dispatch(getMoviesFailure());
   }
 };
