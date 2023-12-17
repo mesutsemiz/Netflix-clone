@@ -10,14 +10,21 @@ import ProductList from "./pages/productList/ProductList";
 import Product from "./pages/product/Product";
 import NewProduct from "./pages/newProduct/NewProduct";
 import Login from "./pages/login/Login";
+import { useContext } from "react";
+import { Redirect } from "react-router-dom/cjs/react-router-dom";
+import { AuthContext } from "./context/authContext/AuthContext";
 
 function App() {
+
+  const {user} = useContext(AuthContext);
   return (
     <Router>
       <Switch>
         <Route path="/login">
-          <Login />
+          {user ? <Redirect to="/" /> : <Login />}
         </Route>
+        { user && 
+        <>
         <Topbar />
         <div className="container">
           <Sidebar />
@@ -42,7 +49,7 @@ function App() {
           <Route path="/newproduct">
             <NewProduct />
           </Route>
-        </div>
+        </div></>}
       </Switch>
     </Router>
   );
