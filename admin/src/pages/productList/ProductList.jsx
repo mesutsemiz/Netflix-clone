@@ -22,7 +22,7 @@ export default function ProductList() {
 
 
   const columns = [
-    { field: "id", headerName: "ID", width: 90 },
+    { field: "_id", headerName: "ID", width: 90 },
     {
       field: "movie",
       headerName: "Movie",
@@ -63,13 +63,14 @@ export default function ProductList() {
 
   return (
     <div className="productList">
-      {/* <DataGrid
-        rows={data}
+      <DataGrid
+        rows={movies}
         disableSelectionOnClick
         columns={columns}
         pageSize={8}
         checkboxSelection
-      /> */}
+        getRowId={r=>r._id}
+      />
     </div>
   );
 }
