@@ -6,9 +6,12 @@ import { Link } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import {MovieContext} from "../../context/movieContext/MovieContext";
 import { getMovies} from "../../context/movieContext/apiCalls";
+import { deleteMovie} from "../../context/movieContext/apiCalls";
+
 
 export default function ProductList() {
   const { movies, dispatch} = useContext(MovieContext);
+
 
   useEffect(() => {
     getMovies(dispatch);
@@ -16,7 +19,7 @@ export default function ProductList() {
   
 
   const handleDelete = (id) => {
-    // setData(data.filter((item) => item.id !== id));
+    deleteMovie(id, dispatch)
   };
 
 
@@ -36,10 +39,10 @@ export default function ProductList() {
         );
       },
     },
-    { field: "genre", headerName: "Genre", width: 100 },
-    { field: "year", headerName: "Genre", width: 100 },
-    { field: "limit", headerName: "limit", width: 100 },
-    { field: "isSeries", headerName: "isSeries", width: 100 },
+    { field: "genre", headerName: "Genre", width: 120 },
+    { field: "year", headerName: "Genre", width: 120 },
+    { field: "limit", headerName: "limit", width: 120 },
+    { field: "isSeries", headerName: "isSeries", width: 120 },
    
     {
       field: "action",
@@ -48,12 +51,12 @@ export default function ProductList() {
       renderCell: (params) => {
         return (
           <>
-            <Link to={"/product/" + params.row.id}>
+            <Link to={{pathname:"/movie/" + params.row._id, movie:params.row}}>
               <button className="productListEdit">Edit</button>
             </Link>
             <DeleteOutline
               className="productListDelete"
-              onClick={() => handleDelete(params.row.id)}
+              onClick={() => handleDelete(params.row._id)}
             />
           </>
         );
