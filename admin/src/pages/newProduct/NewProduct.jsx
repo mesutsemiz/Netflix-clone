@@ -15,7 +15,6 @@ export default function NewProduct() {
   
   }
 
-  console.log(movie)
 
   return (
     <div className="newProduct">
@@ -23,15 +22,15 @@ export default function NewProduct() {
       <form className="addProductForm">
         <div className="addProductItem">
           <label>Image</label>
-          <input type="file" id="img" name="img" onChange={(e) =>setImg(e.target.Files[0])} />
+          <input type="file" id="img" name="img" onChange={(e) =>setImg(e.target.files[0])} />
         </div>
         <div className="addProductItem">
           <label>Title Image</label>
-          <input type="file" id="imgTitle" name="imgTitle" onChange={(e) =>setImgTitle(e.target.Files[0])} />
+          <input type="file" id="imgTitle" name="imgTitle" onChange={(e) =>setImgTitle(e.target.files[0])} />
         </div>
         <div className="addProductItem">
           <label>Thumbnail Image</label>
-          <input type="file" id="imgSm" name="imgSm" onChange={(e) =>setImgSm(e.target.Files[0])} />
+          <input type="file" id="imgSm" name="imgSm" onChange={(e) =>setImgSm(e.target.files[0])} />
         </div>
         <div className="addProductItem">
           <label>Title</label>
@@ -66,11 +65,11 @@ export default function NewProduct() {
         </div>
         <div className="addProductItem">
           <label>Trailer</label>
-          <input type="file" name="trailer" onChange={(e) =>setTrailer(e.target.Files[0])}/>
+          <input type="file" name="trailer" onChange={(e) =>setTrailer(e.target.files[0])}/>
         </div>
         <div className="addProductItem"> 
           <label>Video</label>
-          <input type="file" name="video" onChange={(e) =>setVideo(e.target.Files[0])}/>
+          <input type="file" name="video" onChange={(e) =>setVideo(e.target.files[0])}/>
         </div>
         <button className="addProductButton">Create</button>
       </form>
