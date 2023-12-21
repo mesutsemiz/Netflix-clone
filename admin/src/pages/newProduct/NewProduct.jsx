@@ -24,7 +24,7 @@ export default function NewProduct() {
         console.log("upload is " + progress +"% done")
       },
       (err)=>{console.log(err)}, ()=>{
-        uploadTask.snapshot.ref.getDownloadUrl().then((url)=>{
+        uploadTask.snapshot.ref.getDownloadURL().then((url)=>{
           setMovie((prev)=>{
             return {...prev, [item.label]:url};
           });
