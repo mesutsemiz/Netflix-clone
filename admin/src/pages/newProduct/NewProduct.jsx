@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./newProduct.css";
 import storage from "../../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { createMovie } from "../../context/movieContext/apiCalls";
+import { MovieContext } from "../../context/movieContext/MovieContext";
+
 
 export default function NewProduct() {
   const [movie, setMovie] = useState(null);
@@ -11,6 +14,8 @@ export default function NewProduct() {
   const [trailer, setTrailer] = useState(null);
   const [video, setVideo] = useState(null);
   const [uploaded, setUploaded] = useState(0);
+
+  const {dispatch} = useContext(MovieContext);
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -24,7 +29,6 @@ export default function NewProduct() {
       const storageRef = ref(storage, `/items/${fileName}`);
 
       const uploadTask = uploadBytesResumable(storageRef, item.file);
-      // const uploadTask = storage.ref(`/items/${fileName}`).put(item.file);
       uploadTask.on(
         "state_changed",
         (snapshot) => {
@@ -58,7 +62,10 @@ export default function NewProduct() {
     ]);
   };
 
-  console.log(movie);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    createMovie(movie, dispatch);
+  };
 
   return (
     <div className="newProduct">
@@ -169,7 +176,7 @@ export default function NewProduct() {
           />
         </div>
         {uploaded === 5 ? (
-          <button className="addProductButton">Create</button>
+          <button className="addProductButton" onClick={handleSubmit}>Create</button>
         ) : (
           <button className="addProductButton" onClick={handleUpload}>
             Upload
