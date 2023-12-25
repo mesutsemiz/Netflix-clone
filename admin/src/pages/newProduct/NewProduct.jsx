@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./newProduct.css";
 import storage from "../../firebase";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 export default function NewProduct() {
   const [movie, setMovie] = useState(null);
@@ -18,8 +19,12 @@ export default function NewProduct() {
 
   const upload = (items) => {
     items.forEach((item) => {
+      console.log(item,"ss")
       const fileName = new Date().getTime() + item.label + item.file.name;
-      const uploadTask = storage.ref(`/items/${fileName}`).put(item.file);
+      const storageRef = ref(storage, `/items/${fileName}`);
+
+      const uploadTask = uploadBytesResumable(storageRef, item.file);
+      // const uploadTask = storage.ref(`/items/${fileName}`).put(item.file);
       uploadTask.on(
         "state_changed",
         (snapshot) => {
@@ -31,7 +36,7 @@ export default function NewProduct() {
           console.log(error);
         },
         () => {
-          uploadTask.snapshot.ref.getDownloadURL().then((url) => {
+          getDownloadURL(uploadTask.snapshot.ref).then((url) => {
             setMovie((prev) => {
               return { ...prev, [item.label]: url };
             });
@@ -53,7 +58,7 @@ export default function NewProduct() {
     ]);
   };
 
-  console.log(movie)
+  console.log(movie);
 
   return (
     <div className="newProduct">
@@ -166,7 +171,9 @@ export default function NewProduct() {
         {uploaded === 5 ? (
           <button className="addProductButton">Create</button>
         ) : (
-          <button className="addProductButton" onClick={handleUpload}>Upload</button>
+          <button className="addProductButton" onClick={handleUpload}>
+            Upload
+          </button>
         )}
       </form>
     </div>
