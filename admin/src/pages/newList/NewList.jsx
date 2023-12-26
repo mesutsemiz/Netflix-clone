@@ -33,6 +33,7 @@ export default function NewList() {
     <div className="newProduct">
       <h1 className="addProductTitle">New Movie</h1>
       <form className="addProductForm">
+      <div className="formLeft">
         <div className="addProductItem">
           <label>Title</label>
           <input
@@ -53,13 +54,14 @@ export default function NewList() {
         </div>
         <div className="addProductItem">
           <label>Type</label>
-          <select name="type" onChange={handleChange}>
+          <select name="type" onChange={handleChange} style={{ height: "280px" }}>
             <option >Type</option>
             <option value="movie">Movie</option>
             <option value="series">Series</option>
           </select>
         </div>
-
+        </div>
+        <div className="formRight">
         <div className="addProductItem">
           <label>Content</label>
           <select multiple name="content" onChange={handleSelect}>
@@ -70,6 +72,8 @@ export default function NewList() {
             ))}
           </select>
         </div>
+        </div>
+        
         <button className="addProductButton" onClick={handleSubmit}>
           Create
         </button>
