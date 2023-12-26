@@ -1,12 +1,14 @@
 import { useContext, useEffect, useState } from "react";
 import "./newList.css";
-
+import { createList } from "../../context/listContext/apiCalls";
 import { getMovies } from "../../context/movieContext/apiCalls";
 import { ListContext } from "../../context/listContext/ListContext";
 import { MovieContext } from "../../context/movieContext/MovieContext";
+import { useHistory } from "react-router-dom";
 
 export default function NewList() {
   const [list, setList] = useState(null);
+  const history = useHistory()
 
   const { dispatch } = useContext(ListContext);
   const { movies, dispatch: dispatchMovie } = useContext(MovieContext);
@@ -22,6 +24,8 @@ export default function NewList() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    createList(list,dispatch)
+    history.push("/list")
   };
 
   const handleSelect = (e) => {
@@ -31,14 +35,14 @@ export default function NewList() {
 
   return (
     <div className="newProduct">
-      <h1 className="addProductTitle">New Movie</h1>
+      <h1 className="addProductTitle">New List</h1>
       <form className="addProductForm">
       <div className="formLeft">
         <div className="addProductItem">
           <label>Title</label>
           <input
             type="text"
-            placeholder="Jhon wick"
+            placeholder="populer movies"
             name="title"
             onChange={handleChange}
           />
