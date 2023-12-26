@@ -46,7 +46,7 @@ export const createList = async (list,dispatch) => {
 export const deleteList = async (id, dispatch) => {
   dispatch(deleteListStart());
   try {
-    const res = await axios.delete("/lists"+id, {
+    await axios.delete("/lists/"+id, {
       headers: {
         token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
       },

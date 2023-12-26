@@ -23,8 +23,8 @@ export default function ListList() {
 
 
   const columns = [
-    { field: "_id", headerName: "ID", width: 90 },
-    { field: "title", headerName: "title", width: 120 },
+    { field: "_id", headerName: "ID", width: 250},
+    { field: "title", headerName: "title", width: 250 },
     { field: "genre", headerName: "Genre", width: 120 },
     { field: "type", headerName: "type", width: 120 },
   
@@ -36,14 +36,16 @@ export default function ListList() {
       renderCell: (params) => {
         return (
           <>
-            <Link to={{pathname:"/product/" + params.row._id, movie:params.row}}>
-              <button className="productListEdit">Edit</button>
-            </Link>
-            <DeleteOutline
-              className="productListDelete"
-              onClick={() => handleDelete(params.row._id)}
-            />
-          </>
+          <Link
+            to={{ pathname: "/list/" + params.row._id, list: params.row }}
+          >
+            <button className="productListEdit">Edit</button>
+          </Link>
+          <DeleteOutline
+            className="productListDelete"
+            onClick={() => handleDelete(params.row._id)}
+          />
+        </>
         );
       },
     },
