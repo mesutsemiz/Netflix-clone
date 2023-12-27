@@ -28,6 +28,8 @@ export default function NewList() {
     history.push("/list")
   };
 
+  console.log("first")
+
   const handleSelect = (e) => {
     let value = Array.from(e.target.selectedOptions, (option) => option.value);
     setList({ ...list, [e.target.name]: value });
