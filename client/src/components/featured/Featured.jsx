@@ -6,7 +6,7 @@ import { useState } from "react";
 import axios from "axios";
 
 
-const Featured = ({type}) => {
+const Featured = ({type,setGenre}) => {
   const [content, setContent] = useState({});
 
   useEffect(()=>{
@@ -24,16 +24,14 @@ const Featured = ({type}) => {
       }
     }
 getRandomContent()
-  },[type])
-
-  console.log(content,"content")
+  },[type]);
 
   return (
     <div className="featured">
         {type && (
             <div className="category">
                 <span>{type === "movies" ? "Movies" : "Series"}</span>
-                <select name="genre" id="genre">
+                <select name="genre" id="genre" onChange={e =>setGenre(e.target.value)}>
                     <option value="cdventure">Adventure</option>
                     <option value="comedy">Comedy</option>
                     <option value="crime">Crime</option>
